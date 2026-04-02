@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active%20Learning-success?style=for-the-badge)
 ![Students](https://img.shields.io/badge/DYPatil%20SEM%20Students-Learning-blue?style=for-the-badge)
-![Progress](https://img.shields.io/badge/Day%202-Ongoing-brightgreen?style=for-the-badge)
+![Progress](https://img.shields.io/badge/Day%202-Completed-brightgreen?style=for-the-badge)
 ![Duration](https://img.shields.io/badge/Duration-2%20Days-orange?style=for-the-badge)
 
 ### 🚀 *Master Python Fundamentals in 2 Days!*
@@ -34,7 +34,7 @@ Variables, DataTypes & Functions
 <td width="50%" align="center">
 
 ### 🎨 **Day 2: OOPs**
-Encapsulation & Inheritance
+Classes, Encapsulation & Inheritance
 
 [Jump to Day 2 →](#-topics-covered---day-2)
 
@@ -66,14 +66,23 @@ Day 1 - Python Fundamentals & Functions:
 ✅ Functions - Definition, parameters, return values
 ✅ 20+ Practice Questions Solved
 
-Day 2 - Object-Oriented Programming (In Progress):
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%
+Day 2 - Object-Oriented Programming (Completed):
+████████████████████████████████ 100%
 
-⏳ Classes and Objects (In Progress)
-⏳ Constructor and Methods
-⏳ Encapsulation - Data hiding and access control
-⏳ Inheritance - Code reusability and hierarchy
-⏳ Access Modifiers - Public, Protected, Private
+✅ Classes and Objects - Blueprint and Instances
+✅ Constructor and Methods - __init__() and instance methods
+✅ Instance Attributes vs Class Attributes
+✅ Encapsulation - Data hiding and access control
+✅ Public Members (No underscore)
+✅ Protected Members (Single underscore _)
+✅ Private Members (Double underscore __)
+✅ Getter and Setter Methods - Controlled Access
+✅ Inheritance - Code reusability
+✅ Single Inheritance - Parent and Child classes
+✅ Method Overriding - Redefining parent methods
+✅ Constructor Chaining - Using super()
+✅ Real-world Applications with Classes
+✅ 16+ Practice Questions Solved
 ```
 
 ---
@@ -650,17 +659,17 @@ Output:
 
 ## 📚 Topics Covered - Day 2
 
-### ✅ Object-Oriented Programming (OOPs) - Introduction
+### ✅ Object-Oriented Programming (OOPs) - Complete Implementation
 
 #### **What is OOPs?**
 - Programming paradigm based on objects and classes
 - Real-world modeling through code
 - Four pillars: Encapsulation, Abstraction, Inheritance, Polymorphism
-- We'll cover: **Encapsulation** and **Inheritance** today
+- **Focus today:** Classes, Encapsulation, and Inheritance
 
 ---
 
-### ✅ Classes and Objects - Fundamentals
+### ✅ Classes and Objects - Creating Blueprints
 
 #### **Class Definition** - Creating a blueprint
 ```python
@@ -677,6 +686,143 @@ student2 = Student()
 #### **Object Identity**
 - Each object is unique with its own memory address
 - Multiple objects created from same class are independent
+- Can be checked using `id()` function
+
+---
+
+### ✅ Constructor (`__init__`) - Initialization Method
+
+#### **What is Constructor?**
+- Special method called automatically when object is created
+- Used to initialize object attributes
+- Syntax: `def __init__(self, ...)`
+- `self` refers to the current object
+
+#### **Default Constructor (No Parameters)**
+```python
+class Student:
+    def __init__(self):
+        print("An object has been Created")
+
+s1 = Student()  # Prints: An object has been Created
+```
+
+#### **Parameterized Constructor**
+```python
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+s1 = Student("Shivam")  # name = "Shivam"
+print(s1.name)          # Output: Shivam
+```
+
+#### **Default Parameter Constructor**
+```python
+class Student:
+    def __init__(self, name="anonymous"):
+        self.name = name
+
+s1 = Student("Sejal")
+print(s1.name)          # Output: Sejal
+
+s2 = Student()
+print(s2.name)          # Output: anonymous
+```
+
+#### **Multiple Parameters Constructor**
+```python
+class Student:
+    def __init__(self, name, m1, m2, m3):
+        self.name = name
+        self.m1 = m1
+        self.m2 = m2
+        self.m3 = m3
+    
+    def get_avg(self):
+        avg = (self.m1 + self.m2 + self.m3) / 3
+        return avg
+    
+    def get_details(self):
+        print(self.name, "Average Marks =", self.get_avg())
+
+s1 = Student("Shivam", 94, 96, 98)
+s1.get_details()  # Output: Shivam Average Marks = 96.0
+```
+
+---
+
+### ✅ Instance Methods - Operating on Object Data
+
+#### **What are Instance Methods?**
+- Methods that operate on instance data
+- Can access and modify object attributes using `self`
+- Called on objects, not on class
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+    
+    def circumference(self):
+        return 2 * 3.14 * self.radius
+
+circle = Circle(5)
+print(f"Area: {circle.area()}")              # 78.5
+print(f"Circumference: {circle.circumference()}")  # 31.4
+```
+
+---
+
+### ✅ Instance vs Class Attributes
+
+#### **Class Attributes** - Shared by all instances
+```python
+class Student:
+    clgName = "D Y Patil SEM"  # Class attribute (shared)
+    
+    def __init__(self, name, marks):
+        self.name = name      # Instance attribute (unique)
+        self.marks = marks    # Instance attribute (unique)
+
+s1 = Student("Shivam", 90)
+s2 = Student("Sejal", 85)
+
+print(s1.name)           # Shivam
+print(s2.name)           # Sejal
+print(Student.clgName)   # D Y Patil SEM (accessed via class)
+print(s1.clgName)        # D Y Patil SEM (also via instance)
+```
+
+#### **Practice Example:**
+```python
+class Student:
+    clgName = "D Y Patil SEM"
+
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+    def display_Details(self):
+        print(f"Name = {self.name}")
+        print(f"Marks = {self.marks}")
+        print(f"College = {self.clgName}")
+        print(f"PASSED = {self.is_pass()}")
+
+    def is_pass(self):
+        return self.marks >= 40
+
+s1 = Student("Shivam", 90)
+s1.display_Details()
+# Output:
+# Name = Shivam
+# Marks = 90
+# College = D Y Patil SEM
+# PASSED = True
+```
 
 ---
 
@@ -687,10 +833,11 @@ student2 = Student()
 - Controlling access to data
 - Protecting data from unwanted modifications
 - Hiding internal implementation details
+- **Core principle:** Hide sensitive data, expose only what's necessary
 
-#### **Access Modifiers - Three Levels of Access**
+#### **Three Levels of Access Control**
 
-##### **1. Public Members (No prefix)**
+##### **1. Public Members (No Underscore Prefix)**
 - Accessible from anywhere: outside class, in other classes
 - Syntax: `self.attribute` or `def method():`
 - Convention: No underscore prefix
@@ -704,7 +851,6 @@ class Student:
     def display(self):        # Public method
         print(f"Name: {self.name}, Marks: {self.marks}")
 
-# Usage
 s1 = Student("Alice", 85)
 print(s1.name)        # ✅ Can access directly
 s1.display()          # ✅ Can call method
@@ -712,10 +858,10 @@ s1.marks = 90         # ✅ Can modify directly
 ```
 
 ##### **2. Protected Members (Single Underscore `_`)**
-- Convention for "use with caution" - intended for internal/subclass use
-- Not truly protected in Python (no enforcement)
+- Convention for "internal use" - intended for subclass use
+- NOT truly protected in Python (no enforcement)
 - Syntax: `self._attribute` or `def _method():`
-- Used to signal: "This is internal, modify with care"
+- Used to signal: "This is internal, modify with caution"
 
 ```python
 class BankAccount:
@@ -726,7 +872,6 @@ class BankAccount:
     def _validate_amount(self, amount):  # Protected method
         return amount > 0
 
-# Usage
 account = BankAccount("12345", 5000)
 print(account._balance)      # Can access but shouldn't (convention)
 account._balance = 0         # Possible but discouraged
@@ -734,15 +879,15 @@ account._balance = 0         # Possible but discouraged
 
 ##### **3. Private Members (Double Underscore `__`)**
 - Name mangling: `__attribute` becomes `_ClassName__attribute`
-- Cannot access directly from outside class
+- CANNOT access directly from outside class
 - Intended for strict data hiding
 - Syntax: `self.__attribute` or `def __method():`
 
 ```python
 class Account:
     def __init__(self, username, password):
-        self.username = username    # Public - OK to access
-        self.__password = password  # Private - CANNOT access directly
+        self.username = username      # Public - OK to access
+        self.__password = password    # Private - CANNOT access directly
     
     def change_password(self, old_pwd, new_pwd):
         """Public method to safely change password"""
@@ -757,11 +902,37 @@ acc = Account("alice", "secret123")
 print(acc.username)                    # ✅ OK
 # print(acc.__password)                # ❌ AttributeError!
 
-# Name mangling allows access (but don't do this!)
-print(acc._Account__password)          # ⚠️ Technically possible, but WRONG
-
 # Use the public method instead
 acc.change_password("secret123", "newpass456")  # ✅ Correct way
+```
+
+#### **Real-World Example: Bank Account**
+```python
+class Bank:
+    def __init__(self, accNum, accPass):
+        self.accNum = accNum
+        self.__accPass = accPass
+
+    def __getPassword(self):
+        return self.__accPass
+    
+    def resetPassword(self):
+        print("Old Password =", self.__getPassword())
+        self.__accPass = "NewSecurePass123"
+        print("New Password =", self.__accPass)
+
+b1 = Bank(143801000115559, "Shivam@321")
+# Can access public data
+print(f"Account Number = {b1.accNum}")
+
+# Cannot directly access private data
+# print(f"Password = {b1.__accPass}")  # ❌ Error!
+
+# Use public method to reset password
+b1.resetPassword()
+# Output:
+# Old Password = Shivam@321
+# New Password = NewSecurePass123
 ```
 
 #### **Getter and Setter Methods** - Controlled Access
@@ -788,61 +959,8 @@ class Temperature:
 temp = Temperature(25)
 print(temp.get_celsius())              # 25
 print(temp.get_fahrenheit())           # 77.0
-temp.set_celsius(30)                   # Valid
-temp.set_celsius("hot")                # Invalid - prints error
-```
-
-#### **Constructor (`__init__`) Method** - Initialization
-```python
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-        self.__ssn = ""  # Private attribute
-    
-    def display_info(self):
-        print(f"Name: {self.name}, Age: {self.age}")
-
-# Creating object (constructor called automatically)
-person1 = Person("John", 30)
-person1.display_info()
-```
-
-#### **Instance Methods** - Operating on object data
-```python
-class Circle:
-    def __init__(self, radius):
-        self.radius = radius
-    
-    def area(self):
-        return 3.14 * self.radius ** 2
-    
-    def circumference(self):
-        return 2 * 3.14 * self.radius
-
-# Usage
-circle = Circle(5)
-print(f"Area: {circle.area()}")              # 78.5
-print(f"Circumference: {circle.circumference()}")  # 31.4
-```
-
-#### **Instance vs Class Attributes**
-```python
-class Car:
-    wheels = 4  # Class attribute (shared by all instances)
-    
-    def __init__(self, brand, model):
-        self.brand = brand      # Instance attribute (unique per object)
-        self.model = model      # Instance attribute (unique per object)
-
-# Usage
-car1 = Car("Toyota", "Corolla")
-car2 = Car("Honda", "Civic")
-
-print(car1.brand)          # "Toyota"
-print(car2.brand)          # "Honda"
-print(Car.wheels)          # 4 (class attribute)
-print(car1.wheels)         # 4 (accessible via instance too)
+temp.set_celsius(30)                   # Valid ✅
+temp.set_celsius("hot")                # Invalid ❌
 ```
 
 ---
@@ -853,6 +971,7 @@ print(car1.wheels)         # 4 (accessible via instance too)
 - Child class inherits attributes and methods from parent class
 - Code reusability and hierarchy
 - "is-a" relationship
+- Reduces code duplication
 
 #### **Single Inheritance** - One parent, one child
 ```python
@@ -921,6 +1040,40 @@ print(f"Rectangle area: {rect.area()}")  # 20
 
 circle = Circle(3)
 print(f"Circle area: {circle.area()}")   # 28.26
+```
+
+#### **Practical Example: Employee Hierarchy**
+```python
+class Employee:
+    def __init__(self, r, d, s):
+        self.r = r      # Role
+        self.d = d      # Department
+        self.s = s      # Salary
+
+    def getDetails(self):
+        print(f"Role = {self.r}")
+        print(f"Dept = {self.d}")
+        print(f"Salary = {self.s}")
+
+class Engineer(Employee):
+    def __init__(self, name, age, r, d, s):
+        self.name = name
+        self.age = age
+        super().__init__(r, d, s)
+
+    def getDetails(self):
+        print(f"Name = {self.name}")
+        print(f"Age = {self.age}")
+        super().getDetails()
+
+eng1 = Engineer("Winnie", 22, "Software Engineer", "IT", 100000)
+eng1.getDetails()
+# Output:
+# Name = Winnie
+# Age = 22
+# Role = Software Engineer
+# Dept = IT
+# Salary = 100000
 ```
 
 #### **Multi-level Inheritance** - Grandparent → Parent → Child
@@ -1048,79 +1201,36 @@ child.greet()
 
 ## 🏆 Practice Questions - Day 2
 
-### 📝 **Classes & Objects (3+ Questions):**
+### 📝 **Classes & Objects (4+ Questions):**
 1. ✅ Creating classes and instantiating objects
 2. ✅ Instance attributes and methods
 3. ✅ Constructor (`__init__`) with parameters
+4. ✅ Instance vs Class attributes
 
-### 📝 **Encapsulation (4+ Questions):**
-4. ✅ Public member access
-5. ✅ Protected members convention
-6. ✅ Private members and name mangling
-7. ✅ Getter and Setter methods
+### 📝 **Encapsulation (5+ Questions):**
+5. ✅ Public member access and modification
+6. ✅ Protected members convention and usage
+7. ✅ Private members and name mangling
+8. ✅ Getter and Setter methods implementation
+9. ✅ Data hiding for security
 
 ### 📝 **Real-World Applications (3+ Questions):**
-8. ✅ Student class with methods
-9. ✅ BankAccount class with encapsulation
-10. ✅ Circle/Shape class calculations
+10. ✅ Student class with grades and validation
+11. ✅ BankAccount class with private password
+12. ✅ Circle/Shape class with calculations
 
-### 📝 **Inheritance (4+ Questions):**
-11. ✅ Single inheritance implementation
-12. ✅ Constructor chaining with `super()`
-13. ✅ Method overriding
-14. ✅ Multi-level inheritance
+### 📝 **Inheritance (5+ Questions):**
+13. ✅ Single inheritance implementation
+14. ✅ Constructor chaining with `super()`
+15. ✅ Method overriding in child classes
+16. ✅ Multi-level inheritance hierarchies
+17. ✅ Accessing parent methods with `super()`
 
 ### 📝 **Advanced Concepts (2+ Questions):**
-15. ✅ Multiple inheritance
-16. ✅ Accessing parent methods
+18. ✅ Multiple inheritance
+19. ✅ Complex inheritance chains
 
-**Total Questions Day 2: 16+** 🎉
-
----
-
-## 🎓 Self-Study Guide
-
-### 📖 **When Learning DataTypes:**
-- **Step 1:** Understand each type with examples
-- **Step 2:** Practice type conversion with real data
-- **Step 3:** Combine different types in operations
-- **Time to Master:** 2-3 hours
-
-### 📖 **When Learning Operators:**
-- **Step 1:** Learn each operator category
-- **Step 2:** Combine operators in expressions
-- **Step 3:** Practice with conditional logic
-- **Time to Master:** 2-3 hours
-
-### 📖 **When Learning Strings:**
-- **Step 1:** Master indexing and slicing
-- **Step 2:** Practice each string method
-- **Step 3:** Build string manipulation programs
-- **Time to Master:** 3-4 hours
-
-### 📖 **When Learning Lists:**
-- **Step 1:** Create and access list elements
-- **Step 2:** Learn and practice each method
-- **Step 3:** Combine with loops for iteration
-- **Time to Master:** 3-4 hours
-
-### 📖 **When Learning Loops:**
-- **Step 1:** Understand for and while loops
-- **Step 2:** Master break and continue
-- **Step 3:** Practice with nested loops and patterns
-- **Time to Master:** 3-4 hours
-
-### 📖 **When Learning Functions:**
-- **Step 1:** Understand definition and calling
-- **Step 2:** Practice parameters and returns
-- **Step 3:** Build reusable function libraries
-- **Time to Master:** 3-4 hours
-
-### 📖 **When Learning OOPs:**
-- **Step 1:** Understand classes and objects
-- **Step 2:** Practice encapsulation with examples
-- **Step 3:** Implement inheritance hierarchies
-- **Time to Master:** 4-5 hours (per day)
+**Total Questions Day 2: 19+** 🎉
 
 ---
 
@@ -1193,6 +1303,30 @@ print(student.get_marks())
 student.update_marks(92)
 ```
 
+### **Inheritance Pattern - Employee System:**
+```python
+class Employee:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+    
+    def display_info(self):
+        print(f"Name: {self.name}, Role: {self.role}")
+
+class Manager(Employee):
+    def __init__(self, name, role, team_size):
+        super().__init__(name, role)
+        self.team_size = team_size
+    
+    def display_info(self):
+        super().display_info()
+        print(f"Team Size: {self.team_size}")
+
+# Usage
+manager = Manager("Alice", "Engineering Manager", 5)
+manager.display_info()
+```
+
 ---
 
 ## 📚 Learning Resources
@@ -1221,14 +1355,15 @@ student.update_marks(92)
 
 ## 🎯 What's Next?
 
-After mastering these fundamentals, explore:
+After mastering OOPs fundamentals, explore:
 
-- 📚 **More OOPs:** Abstraction, Polymorphism
+- 📚 **More OOPs:** Abstraction, Polymorphism, Static Methods
 - 🔄 **Recursion:** Function calling itself
 - 📁 **File Handling:** Reading and writing files
 - 🗂️ **Data Structures:** Dictionaries, Sets
-- 🔧 **Error Handling:** Exception management
+- 🔧 **Error Handling:** Exception management (try-except-finally)
 - 🎮 **Mini Projects:** Building real applications
+- 🔒 **Advanced Encapsulation:** Properties and Decorators
 
 ---
 
@@ -1250,14 +1385,17 @@ After mastering these fundamentals, explore:
 - ✅ Mastered loops and conditionals
 - ✅ Implemented functions for code reusability
 
-### Day 2 Preview:
-- 🎨 Introduction to Object-Oriented Programming
-- 🔒 Encapsulation for data protection
-- 👨‍👩‍👦 Inheritance for code hierarchy
-- 🔧 Building real-world applications with classes
+### Day 2 Summary:
+- ✅ Created classes and objects from scratch
+- ✅ Implemented constructors with parameters
+- ✅ Applied encapsulation with public, protected, and private members
+- ✅ Used getter/setter methods for data protection
+- ✅ Implemented single inheritance with `super()`
+- ✅ Practiced method overriding
+- ✅ Built real-world examples (Bank, Student, Employee)
+- ✅ Mastered data hiding and access control
 
 ---
-
 
 ## 🤝 Need Help?
 
@@ -1301,5 +1439,5 @@ Remember: *Every expert was once a beginner!*
 ---
 
 ![Python](https://img.shields.io/badge/Built%20with-Python-blue?style=flat-square&logo=python)
-![Learning](https://img.shields.io/badge/Learning-Fundamentals-orange?style=flat-square)
+![Learning](https://img.shields.io/badge/Learning-OOPs%20%26%20Fundamentals-orange?style=flat-square)
 ![D Y Patil SEM](https://img.shields.io/badge/D%20Y%20Patil%20SEM-Excellence-green?style=flat-square)
